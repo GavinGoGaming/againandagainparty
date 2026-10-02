@@ -65,9 +65,12 @@ nav {
   align-items: center;
   padding-bottom: 1rem;
   font-size: 1.5rem;
-  padding-top: 1rem;
   height: 70px;
   font-family: var(--font-space-mono), monospace;
+}
+.nav-bottom:first-of-type {
+  padding-top: 1rem;
+  padding-bottom: 0rem;
 }
 .nav-bottom > a.hasSeperator {
   border-right: 2px solid var(--foreground);
@@ -86,7 +89,7 @@ nav {
 }
 
 main {
-  margin-top: 140px;
+  margin-top: 80px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -97,7 +100,8 @@ main {
 
 section {
   max-width: 900px;
-  margin: 120px auto;
+  width: 100%;
+  margin: 50px auto;
   padding: 0 30px;
 }
 
@@ -105,10 +109,57 @@ section h2 {
   margin-bottom: 12px;
 }
 
+.music-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.music-section iframe {
+  height: 300px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+}
+.music-section button { /* these contain fontawesome icons for a left/right arrow */
+  background: color-mix(in oklab, var(--foreground), transparent 80%);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  color: var(--foreground);
+  transition: all 0.2s ease-in-out;
+}
+.music-section button:hover {
+  background: color-mix(in oklab, var(--foreground), transparent 60%);
+
+}
+
 .minecraft-section {
   display: flex;
   align-items: center;
   gap: 50px;
+}
+
+#about {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+#about img {
+  width: 200px;
+  height: auto;
+  border-radius: 50%;
+}
+.about-info {
+  flex: 1;
 }
 
 .minecraft-info {
@@ -130,4 +181,96 @@ section h2 {
   background: rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
+}
+
+a:not(:has(i)) {
+  color: #6d403b;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+a:not(:has(i)):hover {
+  color: #000000;
+  text-decoration: underline;
+}
+a:not(:has(i)):visited {
+  color: #6d403b;
+}
+
+@media (max-width: 768px) {
+  nav {
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+  }
+
+  .nav-top {
+    height: 100px;
+  }
+
+  /* let the icon row wrap instead of overflowing */
+  .nav-bottom {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 0.75rem 1rem;
+    padding: 0 1rem 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .nav-bottom:first-of-type {
+    padding-top: 0.5rem;
+    padding-bottom: 0;
+  }
+
+  /* hover size bump causes layout shift, so skip it on touch */
+  .nav-bottom a:hover {
+    font-size: inherit;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  section {
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+
+  /* video on top at full width, prev/next buttons side by side below */
+  .music-section {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .music-section iframe {
+    order: -1;
+    flex-basis: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .music-section button {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+
+  /* stack about + minecraft */
+  #about,
+  .minecraft-section {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+
+  #about img {
+    width: 150px;
+  }
+
+  .minecraft-section img {
+    width: 100%;
+  }
+
+  .minecraft-info code {
+    word-break: break-all;
+  }
 }
